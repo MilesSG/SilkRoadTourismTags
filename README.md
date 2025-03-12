@@ -42,7 +42,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/yourusername/silk-road-tourism-tags.git
+git clone https://github.com/yourusername/silk-road-tourism-tags.git](https://github.com/MilesSG/SilkRoadTourismTags.git
 
 # 进入项目目录
 cd silk-road-tourism-tags
