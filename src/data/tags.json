@@ -1,0 +1,248 @@
+[
+  {
+    "id": "type-historical",
+    "name": "历史遗迹",
+    "category": "类型",
+    "color": "#8e44ad"
+  },
+  {
+    "id": "type-cultural",
+    "name": "文化体验",
+    "category": "类型",
+    "color": "#f39c12"
+  },
+  {
+    "id": "type-natural",
+    "name": "自然风光",
+    "category": "类型",
+    "color": "#27ae60"
+  },
+  {
+    "id": "type-architecture",
+    "name": "建筑奇观",
+    "category": "类型",
+    "color": "#e74c3c"
+  },
+  {
+    "id": "type-religious",
+    "name": "宗教圣地",
+    "category": "类型",
+    "color": "#3498db"
+  },
+  {
+    "id": "type-museum",
+    "name": "博物馆",
+    "category": "类型",
+    "color": "#16a085"
+  },
+  {
+    "id": "type-adventure",
+    "name": "探险",
+    "category": "类型",
+    "color": "#d35400"
+  },
+  {
+    "id": "type-relaxation",
+    "name": "休闲放松",
+    "category": "类型",
+    "color": "#2980b9"
+  },
+  {
+    "id": "geo-mountain",
+    "name": "山地",
+    "category": "地理特征",
+    "color": "#7f8c8d"
+  },
+  {
+    "id": "geo-desert",
+    "name": "沙漠",
+    "category": "地理特征",
+    "color": "#f1c40f"
+  },
+  {
+    "id": "geo-river",
+    "name": "河流",
+    "category": "地理特征",
+    "color": "#3498db"
+  },
+  {
+    "id": "geo-lake",
+    "name": "湖泊",
+    "category": "地理特征",
+    "color": "#1abc9c"
+  },
+  {
+    "id": "geo-grassland",
+    "name": "草原",
+    "category": "地理特征",
+    "color": "#2ecc71"
+  },
+  {
+    "id": "geo-forest",
+    "name": "森林",
+    "category": "地理特征",
+    "color": "#27ae60"
+  },
+  {
+    "id": "geo-urban",
+    "name": "城市",
+    "category": "地理特征",
+    "color": "#34495e"
+  },
+  {
+    "id": "geo-cave",
+    "name": "洞穴",
+    "category": "地理特征",
+    "color": "#95a5a6"
+  },
+  {
+    "id": "cultural-silk-road",
+    "name": "丝绸之路",
+    "category": "文化",
+    "color": "#c0392b"
+  },
+  {
+    "id": "cultural-ancient-trade",
+    "name": "古代贸易",
+    "category": "文化",
+    "color": "#d35400"
+  },
+  {
+    "id": "cultural-archaeology",
+    "name": "考古发现",
+    "category": "文化",
+    "color": "#f39c12"
+  },
+  {
+    "id": "cultural-local-cuisine",
+    "name": "当地美食",
+    "category": "文化",
+    "color": "#e67e22"
+  },
+  {
+    "id": "cultural-handicraft",
+    "name": "传统工艺",
+    "category": "文化",
+    "color": "#d35400"
+  },
+  {
+    "id": "cultural-festival",
+    "name": "节日庆典",
+    "category": "文化",
+    "color": "#e74c3c"
+  },
+  {
+    "id": "cultural-music-dance",
+    "name": "音乐舞蹈",
+    "category": "文化",
+    "color": "#9b59b6"
+  },
+  {
+    "id": "cultural-nomadic",
+    "name": "游牧文化",
+    "category": "文化",
+    "color": "#8e44ad"
+  },
+  {
+    "id": "season-spring",
+    "name": "适合春季",
+    "category": "季节",
+    "color": "#2ecc71"
+  },
+  {
+    "id": "season-summer",
+    "name": "适合夏季",
+    "category": "季节",
+    "color": "#e74c3c"
+  },
+  {
+    "id": "season-autumn",
+    "name": "适合秋季",
+    "category": "季节",
+    "color": "#e67e22"
+  },
+  {
+    "id": "season-winter",
+    "name": "适合冬季",
+    "category": "季节",
+    "color": "#3498db"
+  },
+  {
+    "id": "season-all-year",
+    "name": "全年适宜",
+    "category": "季节",
+    "color": "#1abc9c"
+  },
+  {
+    "id": "activity-photography",
+    "name": "摄影胜地",
+    "category": "活动",
+    "color": "#34495e"
+  },
+  {
+    "id": "activity-hiking",
+    "name": "徒步旅行",
+    "category": "活动",
+    "color": "#16a085"
+  },
+  {
+    "id": "activity-camping",
+    "name": "露营",
+    "category": "活动",
+    "color": "#27ae60"
+  },
+  {
+    "id": "activity-shopping",
+    "name": "购物",
+    "category": "活动",
+    "color": "#f1c40f"
+  },
+  {
+    "id": "budget-low",
+    "name": "经济实惠",
+    "category": "预算",
+    "color": "#27ae60"
+  },
+  {
+    "id": "budget-medium",
+    "name": "中等消费",
+    "category": "预算",
+    "color": "#f39c12"
+  },
+  {
+    "id": "budget-high",
+    "name": "高端奢华",
+    "category": "预算",
+    "color": "#c0392b"
+  },
+  {
+    "id": "crowd-family",
+    "name": "亲子游",
+    "category": "人群",
+    "color": "#3498db"
+  },
+  {
+    "id": "crowd-solo",
+    "name": "独自旅行",
+    "category": "人群",
+    "color": "#8e44ad"
+  },
+  {
+    "id": "crowd-couple",
+    "name": "情侣约会",
+    "category": "人群",
+    "color": "#e74c3c"
+  },
+  {
+    "id": "crowd-elderly",
+    "name": "老年友好",
+    "category": "人群",
+    "color": "#7f8c8d"
+  },
+  {
+    "id": "crowd-group",
+    "name": "团体游",
+    "category": "人群",
+    "color": "#2980b9"
+  }
+] 

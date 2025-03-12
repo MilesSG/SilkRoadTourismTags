@@ -1,0 +1,465 @@
+[
+  {
+    "id": "scenic-001",
+    "name": "敦煌莫高窟",
+    "description": "莫高窟，俗称千佛洞，是世界上现存规模最大、内容最丰富的佛教艺术圣地，也是丝绸之路上最为璀璨的文化明珠。洞窟始建于十六国的前秦时期，历经十六国、北朝、隋、唐、五代、西夏、元等历代的开凿与兴建，形成巨大的规模。",
+    "location": {
+      "address": "甘肃省酒泉市敦煌市莫高窟",
+      "city": "敦煌",
+      "province": "甘肃",
+      "country": "中国",
+      "coordinates": {
+        "lat": 40.0359,
+        "lng": 94.8053
+      }
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1566138702430-e9de69726fe3?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1567528366843-44e2150ea8e4?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1528375052223-97f426f4d4fc?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "type-historical",
+      "type-cultural",
+      "type-religious",
+      "geo-desert",
+      "cultural-silk-road",
+      "cultural-archaeology",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "budget-medium"
+    ],
+    "price": {
+      "adult": 258,
+      "child": 130,
+      "student": 130
+    },
+    "openingHours": {
+      "open": "08:00",
+      "close": "17:30",
+      "holidayAdjustment": "旺季和节假日可能会调整开放时间，请提前查询"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.9,
+    "visitDuration": "4-6小时",
+    "createdAt": "2023-01-01T08:00:00Z",
+    "updatedAt": "2023-12-01T10:30:00Z"
+  },
+  {
+    "id": "scenic-002",
+    "name": "西安兵马俑",
+    "description": "秦始皇兵马俑，是世界文化遗产，世界八大奇迹之一。兵马俑是古代墓葬雕塑的一个类别，古代实行人殉，奴隶是奴隶主生前的附属品，奴隶主死后奴隶要陪葬，到了秦代，秦始皇嬴政采纳了丞相李斯的建议，用兵马俑代替活人殉葬。",
+    "location": {
+      "address": "陕西省西安市临潼区秦陵北路",
+      "city": "西安",
+      "province": "陕西",
+      "country": "中国",
+      "coordinates": {
+        "lat": 34.3841,
+        "lng": 109.2785
+      }
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1563889958749-625da26ed355?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551650198-72bcbf5af56a?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592910147752-5e3d7aefe0ef?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "type-historical",
+      "type-museum",
+      "geo-urban",
+      "cultural-archaeology",
+      "cultural-silk-road",
+      "season-all-year",
+      "activity-photography",
+      "budget-medium",
+      "crowd-family"
+    ],
+    "price": {
+      "adult": 150,
+      "child": 75,
+      "student": 75
+    },
+    "openingHours": {
+      "open": "08:30",
+      "close": "18:00",
+      "holidayAdjustment": "旺季延长至18:30关闭"
+    },
+    "bestVisitSeason": ["春", "秋", "冬"],
+    "rating": 4.8,
+    "visitDuration": "3-4小时",
+    "createdAt": "2023-01-02T09:00:00Z",
+    "updatedAt": "2023-11-15T14:20:00Z"
+  },
+  {
+    "id": "scenic-003",
+    "name": "嘉峪关",
+    "description": "嘉峪关是明长城最西端的关口，素有"天下第一雄关"之称，也是古代丝绸之路上的重要关隘。关城依山而建，地势险要，城墙高大坚固，气势磅礴，是明代军事防御工程的代表作。",
+    "location": {
+      "address": "甘肃省嘉峪关市长城区嘉峪关文物景区",
+      "city": "嘉峪关",
+      "province": "甘肃",
+      "country": "中国",
+      "coordinates": {
+        "lat": 39.8718,
+        "lng": 98.2861
+      }
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1567870590465-82a3a113053e?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1593011951342-8640ad0e801c?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1622961310558-e7d25a9297cd?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "type-historical",
+      "type-cultural",
+      "geo-desert",
+      "cultural-silk-road",
+      "cultural-architecture",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "budget-medium"
+    ],
+    "price": {
+      "adult": 120,
+      "child": 60,
+      "student": 60
+    },
+    "openingHours": {
+      "open": "09:00",
+      "close": "17:30"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.7,
+    "visitDuration": "3-4小时",
+    "createdAt": "2023-01-03T11:00:00Z",
+    "updatedAt": "2023-10-05T16:40:00Z"
+  },
+  {
+    "id": "scenic-004",
+    "name": "喀什老城",
+    "description": "喀什老城，又称高台民居，是中国现存规模最大的生土建筑群落，也是丝绸之路上重要的历史文化遗产。这里保存着浓厚的维吾尔族建筑风格和生活气息，狭窄的街巷、精美的雕花门窗和传统的手工艺品店铺，让人仿佛穿越回古代丝路商贸繁华的时光。",
+    "location": {
+      "address": "新疆维吾尔自治区喀什市老城区",
+      "city": "喀什",
+      "province": "新疆",
+      "country": "中国",
+      "coordinates": {
+        "lat": 39.4738,
+        "lng": 75.9892
+      }
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1518638150340-f706e86654de?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1570303278489-041bd897a873?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "type-cultural",
+      "type-historical",
+      "geo-urban",
+      "cultural-silk-road",
+      "cultural-local-cuisine",
+      "cultural-handicraft",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "activity-shopping",
+      "budget-low"
+    ],
+    "price": {
+      "adult": 45,
+      "child": 20,
+      "student": 20
+    },
+    "openingHours": {
+      "open": "09:00",
+      "close": "20:00"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.6,
+    "visitDuration": "3-4小时",
+    "createdAt": "2023-01-05T14:30:00Z",
+    "updatedAt": "2023-09-10T18:15:00Z"
+  },
+  {
+    "id": "scenic-005",
+    "name": "交河故城",
+    "description": "交河故城是世界上保存最完整、规模最大的生土建筑古城，有"世界上最古老的空中城市"之称。城址始建于公元前2世纪，曾是西域三十六国之一的车师前国的都城，是古丝绸之路北道上的重要城邦。经历了近2000年的风雨沧桑，如今依然气势恢宏，令人叹为观止。",
+    "location": {
+      "address": "新疆维吾尔自治区吐鲁番市区西北13公里处",
+      "city": "吐鲁番",
+      "province": "新疆",
+      "country": "中国",
+      "coordinates": {
+        "lat": 42.958,
+        "lng": 89.5291
+      }
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1467688695332-6b486449d78f?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1513156125592-b01f7847a559?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "type-historical",
+      "geo-desert",
+      "cultural-silk-road",
+      "cultural-archaeology",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "budget-low"
+    ],
+    "price": {
+      "adult": 40,
+      "child": 20,
+      "student": 20
+    },
+    "openingHours": {
+      "open": "10:00",
+      "close": "18:00",
+      "holidayAdjustment": "夏季高温期可能会调整开放时间"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.5,
+    "visitDuration": "2-3小时",
+    "createdAt": "2023-01-08T11:20:00Z",
+    "updatedAt": "2023-08-15T09:45:00Z"
+  },
+  {
+    "id": "scenic-006",
+    "name": "甘肃张掖丹霞地貌",
+    "description": "张掖丹霞地貌被《中国国家地理》评为中国最美的七大丹霞地貌之一，素有"彩色丹霞第一名山"的美誉。这里的丹霞地貌群以色彩斑斓、气势磅礴著称，层层叠叠的山体呈现出红、黄、蓝、绿、白等多种色彩，如同打翻的调色盘，尤其在阳光照射下，色彩变幻莫测，令人叹为观止。",
+    "location": {
+      "address": "甘肃省张掖市临泽县倪家营乡",
+      "city": "张掖",
+      "province": "甘肃",
+      "country": "中国",
+      "coordinates": {
+        "lat": 38.9403,
+        "lng": 100.4428
+      }
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1597563236321-86b5bbc2ea58?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1604478579007-7c9313e53f9a?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563784462386-044fd95e9852?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "type-natural",
+      "geo-mountain",
+      "cultural-silk-road",
+      "season-spring",
+      "season-summer",
+      "season-autumn",
+      "activity-photography",
+      "activity-hiking",
+      "budget-medium"
+    ],
+    "price": {
+      "adult": 74,
+      "child": 37,
+      "student": 37
+    },
+    "openingHours": {
+      "open": "08:00",
+      "close": "18:00"
+    },
+    "bestVisitSeason": ["春", "夏", "秋"],
+    "rating": 4.8,
+    "visitDuration": "4-5小时",
+    "createdAt": "2023-01-10T15:40:00Z",
+    "updatedAt": "2023-07-20T13:25:00Z"
+  },
+  {
+    "id": "scenic-007",
+    "name": "布哈拉古城",
+    "description": "布哈拉是中亚最古老的城市之一，有着2500多年的历史，是古丝绸之路上的重要商贸中心和文化交汇点。布哈拉老城保存了众多中世纪建筑，包括清真寺、经学院、市场和浴场等，展现了伊斯兰建筑艺术的精髓。整个城市就像一座活的博物馆，被联合国教科文组织列为世界文化遗产。",
+    "location": {
+      "address": "乌兹别克斯坦布哈拉州布哈拉市",
+      "city": "布哈拉",
+      "province": "布哈拉州",
+      "country": "乌兹别克斯坦",
+      "coordinates": {
+        "lat": 39.7675,
+        "lng": 64.4213
+      }
+    },
+    "images": [
+      "https://images.pexels.com/photos/3862630/pexels-photo-3862630.jpeg",
+      "https://images.pexels.com/photos/3732500/pexels-photo-3732500.jpeg",
+      "https://images.pexels.com/photos/4825701/pexels-photo-4825701.jpeg"
+    ],
+    "tags": [
+      "type-cultural",
+      "type-historical",
+      "type-religious",
+      "geo-urban",
+      "cultural-silk-road",
+      "cultural-handicraft",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "budget-medium"
+    ],
+    "price": {
+      "adult": 180,
+      "child": 90,
+      "student": 90
+    },
+    "openingHours": {
+      "open": "09:00",
+      "close": "19:00"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.7,
+    "visitDuration": "1-2天",
+    "createdAt": "2023-01-12T16:35:00Z",
+    "updatedAt": "2023-06-18T14:50:00Z"
+  },
+  {
+    "id": "scenic-008",
+    "name": "撒马尔罕",
+    "description": "撒马尔罕是中亚最古老的城市之一，有着2700多年的历史，曾是丝绸之路上最重要的枢纽城市和文化中心。这座城市保存了大量的历史古迹，其中以帖木儿王朝时期的建筑最为著名，如雷吉斯坦广场、比比哈尼姆清真寺和沙赫静达陵墓群等。撒马尔罕因其独特的历史和建筑价值，被联合国教科文组织列为世界文化遗产。",
+    "location": {
+      "address": "乌兹别克斯坦撒马尔罕州撒马尔罕市",
+      "city": "撒马尔罕",
+      "province": "撒马尔罕州",
+      "country": "乌兹别克斯坦",
+      "coordinates": {
+        "lat": 39.6542,
+        "lng": 66.9597
+      }
+    },
+    "images": [
+      "https://images.pexels.com/photos/3889843/pexels-photo-3889843.jpeg",
+      "https://images.pexels.com/photos/4512439/pexels-photo-4512439.jpeg",
+      "https://images.pexels.com/photos/4552350/pexels-photo-4552350.jpeg"
+    ],
+    "tags": [
+      "type-cultural",
+      "type-historical",
+      "type-religious",
+      "type-architecture",
+      "geo-urban",
+      "cultural-silk-road",
+      "cultural-handicraft",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "budget-medium"
+    ],
+    "price": {
+      "adult": 200,
+      "child": 100,
+      "student": 100
+    },
+    "openingHours": {
+      "open": "08:00",
+      "close": "19:00"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.9,
+    "visitDuration": "1-2天",
+    "createdAt": "2023-01-15T10:45:00Z",
+    "updatedAt": "2023-05-25T11:10:00Z"
+  },
+  {
+    "id": "scenic-009",
+    "name": "伊斯坦布尔",
+    "description": "伊斯坦布尔是土耳其最大城市，也是连接亚欧两大洲的重要枢纽，被称为"东方与西方的十字路口"。这座城市历史悠久，曾先后成为罗马帝国、拜占庭帝国和奥斯曼帝国的首都，留下了丰富的历史遗产。最著名的景点包括圣索菲亚大教堂、蓝色清真寺、托普卡帕宫和大巴扎等。伊斯坦布尔的历史中心被联合国教科文组织列为世界文化遗产。",
+    "location": {
+      "address": "土耳其伊斯坦布尔省伊斯坦布尔市",
+      "city": "伊斯坦布尔",
+      "province": "伊斯坦布尔省",
+      "country": "土耳其",
+      "coordinates": {
+        "lat": 41.0082,
+        "lng": 28.9784
+      }
+    },
+    "images": [
+      "https://images.pexels.com/photos/2042109/pexels-photo-2042109.jpeg",
+      "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg",
+      "https://images.pexels.com/photos/2868242/pexels-photo-2868242.jpeg"
+    ],
+    "tags": [
+      "type-cultural",
+      "type-historical",
+      "type-religious",
+      "type-architecture",
+      "geo-urban",
+      "cultural-silk-road",
+      "cultural-handicraft",
+      "cultural-local-cuisine",
+      "season-spring",
+      "season-autumn",
+      "activity-photography",
+      "activity-shopping",
+      "budget-high"
+    ],
+    "price": {
+      "adult": 350,
+      "child": 175,
+      "student": 175
+    },
+    "openingHours": {
+      "open": "09:00",
+      "close": "19:00"
+    },
+    "bestVisitSeason": ["春", "秋"],
+    "rating": 4.8,
+    "visitDuration": "3-5天",
+    "createdAt": "2023-01-18T09:30:00Z",
+    "updatedAt": "2023-04-12T15:40:00Z"
+  },
+  {
+    "id": "scenic-010",
+    "name": "阿姆河古桥",
+    "description": "阿姆河古桥是连接阿富汗和塔吉克斯坦的历史桥梁，曾是古丝绸之路上的重要通道。这座桥跨越阿姆河（古称奥克苏斯河），历史可追溯到波斯时期。桥梁两侧山崖险峻，河水湍急，是古代商队必经之路。如今，虽然原桥已不复存在，但其遗址及周围的山水风光仍吸引着众多游客和历史爱好者前来探访。",
+    "location": {
+      "address": "塔吉克斯坦GBAO地区伊什卡什姆县",
+      "city": "伊什卡什姆",
+      "province": "GBAO地区",
+      "country": "塔吉克斯坦",
+      "coordinates": {
+        "lat": 36.7248,
+        "lng": 71.5677
+      }
+    },
+    "images": [
+      "https://images.pexels.com/photos/5721879/pexels-photo-5721879.jpeg",
+      "https://images.pexels.com/photos/4215102/pexels-photo-4215102.jpeg",
+      "https://images.pexels.com/photos/5842248/pexels-photo-5842248.jpeg"
+    ],
+    "tags": [
+      "type-historical",
+      "geo-river",
+      "geo-mountain",
+      "cultural-silk-road",
+      "cultural-ancient-trade",
+      "season-summer",
+      "activity-photography",
+      "activity-hiking",
+      "budget-low",
+      "crowd-solo"
+    ],
+    "price": {
+      "adult": 25,
+      "child": 15,
+      "student": 15
+    },
+    "openingHours": {
+      "open": "08:00",
+      "close": "17:00"
+    },
+    "bestVisitSeason": ["夏"],
+    "rating": 4.2,
+    "visitDuration": "1-2小时",
+    "createdAt": "2023-01-20T14:25:00Z",
+    "updatedAt": "2023-03-05T10:50:00Z"
+  }
+] 
