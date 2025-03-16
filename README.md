@@ -1,10 +1,10 @@
 # 🏮 丝绸之路旅游标签系统 (Silk Road Tourism Tags)
 
-![系统运行截图](public/images/image1.png.png)
+![系统运行截图](public/images/image1.png)
 
-![系统运行截图](public/images/image2.png.png)
+![系统运行截图](public/images/image2.png)
 
-![系统运行截图](public/images/image3.png.png)
+![系统运行截图](public/images/image3.png)
 
 ## 📜 项目简介
 
