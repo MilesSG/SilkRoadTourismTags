@@ -123,22 +123,37 @@ function changeImage(index: number) {
           <div class="scenic-left">
             <!-- 图片轮播 -->
             <div class="scenic-images">
-              <div class="main-image-container">
-                <img 
-                  :src="scenicSpot.images[currentImageIndex]" 
-                  :alt="scenicSpot.name" 
-                  class="main-image"
-                />
+              <div class="main-gradient-container" :class="`gradient-${scenicSpot.id.charCodeAt(0) % 5}`">
+                <div class="main-gradient-overlay">
+                  <div class="scenic-icon-large">
+                    <el-icon size="64"><location-filled /></el-icon>
+                  </div>
+                  <div class="scenic-info-overlay">
+                    <h2 class="scenic-name-overlay">{{ scenicSpot.name }}</h2>
+                    <div class="scenic-meta-overlay">
+                      <span class="scenic-location-overlay">
+                        <el-icon><location /></el-icon>
+                        {{ scenicSpot.location.city }}, {{ scenicSpot.location.province }}
+                      </span>
+                      <span class="scenic-rating-overlay">
+                        <el-rate v-model="scenicSpot.rating" disabled text-color="#FFFFFF" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="image-thumbnails">
-                <div
-                  v-for="(image, index) in scenicSpot.images"
-                  :key="index"
-                  class="thumbnail"
-                  :class="{ active: index === currentImageIndex }"
-                  @click="changeImage(index)"
-                >
-                  <img :src="image" :alt="`${scenicSpot.name} ${index + 1}`" />
+              <div class="scenic-quick-info">
+                <div class="quick-info-item">
+                  <el-icon><ticket /></el-icon>
+                  <span>门票: ¥{{ scenicSpot.price.adult }}</span>
+                </div>
+                <div class="quick-info-item">
+                  <el-icon><timer /></el-icon>
+                  <span>游览时长: {{ scenicSpot.visitDuration }}</span>
+                </div>
+                <div class="quick-info-item">
+                  <el-icon><calendar /></el-icon>
+                  <span>最佳季节: {{ scenicSpot.bestVisitSeason.join('、') }}</span>
                 </div>
               </div>
             </div>
@@ -250,12 +265,30 @@ function changeImage(index: number) {
               :md="6"
             >
               <el-card class="spot-card" shadow="hover" @click="navigateToScenic(spot.id)">
-                <div class="spot-image-container">
-                  <img :src="spot.images[0]" :alt="spot.name" class="spot-image" />
+                <div class="spot-gradient" :class="`gradient-${spot.id.charCodeAt(0) % 5}`">
+                  <div class="spot-overlay">
+                    <div class="spot-icon">
+                      <el-icon size="32"><location-filled /></el-icon>
+                    </div>
+                    <div class="spot-bottom">
+                      <h3 class="spot-title-overlay">{{ spot.name }}</h3>
+                      <div class="spot-rating">
+                        <el-rate
+                          v-model="spot.rating"
+                          disabled
+                          text-color="#FFFFFF"
+                          score-template="{value}"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="spot-info">
-                  <h3 class="spot-title">{{ spot.name }}</h3>
-                  <p class="spot-location">{{ spot.location.city }}, {{ spot.location.country }}</p>
+                  <p class="spot-location">
+                    <el-icon><location /></el-icon>
+                    {{ spot.location.city }}, {{ spot.location.province }}
+                  </p>
+                  <p class="spot-description">{{ spot.description.substring(0, 60) }}...</p>
                   <div class="spot-tags">
                     <el-tag
                       v-for="(tagId, index) in spot.tags.slice(0, 2)"
@@ -333,46 +366,84 @@ function changeImage(index: number) {
   margin-bottom: 30px;
 }
 
-.main-image-container {
-  height: 400px;
-  overflow: hidden;
+.main-gradient-container {
+  height: 300px;
   border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.main-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-thumbnails {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 5px;
-}
-
-.thumbnail {
-  width: 80px;
-  height: 60px;
-  border-radius: 4px;
   overflow: hidden;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  position: relative;
+  margin-bottom: 15px;
 }
 
-.thumbnail.active {
-  opacity: 1;
-  border-color: var(--primary-color);
+.main-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  color: white;
 }
 
-.thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.scenic-icon-large {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.scenic-info-overlay {
+  text-align: center;
+}
+
+.scenic-name-overlay {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.scenic-meta-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.scenic-location-overlay {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.1rem;
+}
+
+.scenic-rating-overlay {
+  display: flex;
+  align-items: center;
+}
+
+.scenic-quick-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f5f7fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.quick-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+}
+
+.quick-info-item .el-icon {
+  color: var(--primary-color);
+  font-size: 1.2rem;
 }
 
 .scenic-description {
@@ -502,25 +573,65 @@ function changeImage(index: number) {
   transform: translateY(-5px);
 }
 
-.spot-image-container {
-  height: 150px;
+.spot-gradient {
+  height: 140px;
+  position: relative;
+  transition: transform 0.3s ease;
   overflow: hidden;
+  border-radius: 8px 8px 0 0;
 }
 
-.spot-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.spot-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  color: white;
+}
+
+.spot-icon {
+  color: white;
+  align-self: flex-end;
+}
+
+.spot-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.spot-title-overlay {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+}
+
+.spot-rating {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.spot-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .spot-info {
   padding: 15px;
-}
-
-.spot-title {
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  color: var(--dark-color);
 }
 
 .spot-location {
@@ -534,6 +645,32 @@ function changeImage(index: number) {
   gap: 5px;
 }
 
+/* 渐变色样式 */
+.gradient-0 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
+.gradient-1 {
+  background: linear-gradient(135deg, #2af598 0%, #009efd 100%);
+  box-shadow: 0 4px 15px rgba(0, 158, 253, 0.5);
+}
+
+.gradient-2 {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  box-shadow: 0 4px 15px rgba(255, 154, 158, 0.5);
+}
+
+.gradient-3 {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  box-shadow: 0 4px 15px rgba(246, 211, 101, 0.5);
+}
+
+.gradient-4 {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  box-shadow: 0 4px 15px rgba(161, 140, 209, 0.5);
+}
+
 @media (max-width: 768px) {
   .scenic-main {
     flex-direction: column;
@@ -544,7 +681,7 @@ function changeImage(index: number) {
     width: 100%;
   }
   
-  .main-image-container {
+  .main-gradient-container {
     height: 250px;
   }
   

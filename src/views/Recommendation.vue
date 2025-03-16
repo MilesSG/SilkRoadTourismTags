@@ -393,7 +393,11 @@ async function quickGuestLogin() {
             >
               <el-card class="spot-card" shadow="hover" @click="navigateToScenic(result.scenicSpot.id)">
                 <div class="spot-image-container">
-                  <img :src="result.scenicSpot.images[0]" :alt="result.scenicSpot.name" class="spot-image" />
+                  <img 
+                    :src="result.scenicSpot.images[0]" 
+                    :alt="result.scenicSpot.name" 
+                    @error="(e: Event) => { if (e.target) (e.target as HTMLImageElement).src = 'https://pic.imgdb.cn/item/65f1a0e89f345e8d03a1c9c5.jpg' }"
+                  />
                   <div class="match-badge">
                     <span>{{ Math.round(result.matchScore) }}% 匹配</span>
                   </div>
@@ -450,7 +454,11 @@ async function quickGuestLogin() {
           >
             <div class="list-item-content">
               <div class="list-item-image">
-                <img :src="result.scenicSpot.images[0]" :alt="result.scenicSpot.name" />
+                <img 
+                  :src="result.scenicSpot.images[0]" 
+                  :alt="result.scenicSpot.name" 
+                  @error="(e: Event) => { if (e.target) (e.target as HTMLImageElement).src = 'https://pic.imgdb.cn/item/65f1a0e89f345e8d03a1c9c5.jpg' }"
+                />
                 <div class="match-badge">
                   <span>{{ Math.round(result.matchScore) }}% 匹配</span>
                 </div>

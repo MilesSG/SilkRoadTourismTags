@@ -300,27 +300,30 @@ function getGradientIndex(id: string): number {
               <el-col v-for="spot in paginatedSpots" :key="spot.id" :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="scenic-col">
                 <div class="scenic-card-wrapper">
                   <el-card class="scenic-card" shadow="hover" @click="viewScenicDetails(spot.id)">
-                    <div class="card-gradient" :class="`gradient-${spot.id.charCodeAt(0) % 5}`">
+                    <div class="card-gradient" :class="`gradient-${getGradientIndex(spot.id)}`">
                       <div class="card-overlay">
-                        <div class="scenic-rating">
-                          <el-rate
-                            v-model="spot.rating"
-                            disabled
-                            text-color="#FFFFFF"
-                            score-template="{value}"
-                          />
-                        </div>
                         <div class="scenic-icon">
                           <el-icon size="32"><location-filled /></el-icon>
+                        </div>
+                        <div class="card-bottom">
+                          <h3 class="card-title">{{ spot.name }}</h3>
+                          <div class="scenic-rating">
+                            <el-rate
+                              v-model="spot.rating"
+                              disabled
+                              text-color="#FFFFFF"
+                              score-template="{value}"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="scenic-content">
-                      <h3 class="scenic-name">{{ spot.name }}</h3>
                       <p class="scenic-location">
                         <el-icon><location /></el-icon>
                         {{ spot.location.province }} · {{ spot.location.city }}
                       </p>
+                      <p class="scenic-description">{{ spot.description.substring(0, 50) }}...</p>
                       <div class="scenic-price">
                         <el-icon><ticket /></el-icon> 门票 ¥{{ spot.price.adult }}
                       </div>
@@ -354,7 +357,7 @@ function getGradientIndex(id: string): number {
               <el-table-column label="景点" min-width="220">
                 <template #default="{ row }">
                   <div class="list-item-info">
-                    <div class="list-icon-container" :class="`gradient-${row.id.charCodeAt(0) % 5}`">
+                    <div class="list-gradient-container" :class="`gradient-${getGradientIndex(row.id)}`">
                       <el-icon size="24"><location-filled /></el-icon>
                     </div>
                     <div>
@@ -435,6 +438,7 @@ function getGradientIndex(id: string): number {
   margin-bottom: 30px;
   color: white;
   text-align: center;
+  background-color: rgba(30, 60, 114, 0.9);
 }
 
 .header-banner {
@@ -452,14 +456,17 @@ function getGradientIndex(id: string): number {
 .page-title {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .page-desc {
   font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
 
 .search-controls {
@@ -579,13 +586,8 @@ function getGradientIndex(id: string): number {
 }
 
 .scenic-rating {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .scenic-content {
@@ -638,14 +640,16 @@ function getGradientIndex(id: string): number {
   gap: 10px;
 }
 
-.list-icon-container {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
+.list-gradient-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 12px;
   color: white;
+  position: relative;
 }
 
 .list-title {
@@ -720,28 +724,55 @@ function getGradientIndex(id: string): number {
 
 /* 卡片渐变色背景 */
 .card-gradient {
-  height: 120px;
+  height: 140px;
   position: relative;
   transition: transform 0.3s ease;
   overflow: hidden;
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .card-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
+  color: white;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
 }
 
 .scenic-icon {
   color: white;
   align-self: flex-end;
+}
+
+.scenic-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* 渐变色样式 */
@@ -768,17 +799,6 @@ function getGradientIndex(id: string): number {
 .gradient-4 {
   background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
   box-shadow: 0 4px 15px rgba(161, 140, 209, 0.5);
-}
-
-/* 列表视图图标容器 */
-.list-icon-container {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
 }
 
 /* 增强图标和文字搭配 */

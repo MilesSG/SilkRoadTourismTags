@@ -113,20 +113,30 @@ function viewScenicDetails(id: string) {
         <el-row :gutter="20" v-loading="scenicStore.isLoading">
           <el-col :xs="24" :sm="12" :md="6" v-for="spot in hotSpots" :key="spot.id">
             <el-card class="spot-card" shadow="hover" @click="viewScenicDetails(spot.id)">
-              <div class="spot-image-container">
-                <img :src="spot.images[0]" class="spot-image" />
-                <div class="spot-rating">
-                  <el-rate
-                    v-model="spot.rating"
-                    disabled
-                    text-color="#ff9900"
-                    score-template="{value}"
-                  />
+              <div class="spot-gradient" :class="`gradient-${spot.id.charCodeAt(0) % 5}`">
+                <div class="spot-overlay">
+                  <div class="spot-icon">
+                    <el-icon size="32"><location-filled /></el-icon>
+                  </div>
+                  <div class="spot-bottom">
+                    <h3 class="spot-title-overlay">{{ spot.name }}</h3>
+                    <div class="spot-rating">
+                      <el-rate
+                        v-model="spot.rating"
+                        disabled
+                        text-color="#FFFFFF"
+                        score-template="{value}"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="spot-info">
-                <h3 class="spot-title">{{ spot.name }}</h3>
-                <p class="spot-location">{{ spot.location.city }}, {{ spot.location.country }}</p>
+                <p class="spot-location">
+                  <el-icon><location /></el-icon>
+                  {{ spot.location.city }}, {{ spot.location.country }}
+                </p>
+                <p class="spot-description">{{ spot.description.substring(0, 60) }}...</p>
                 <div class="spot-tags">
                   <el-tag
                     v-for="(tagId, index) in spot.tags.slice(0, 3)"
@@ -198,7 +208,7 @@ function viewScenicDetails(id: string) {
 
 .hero-section {
   height: 500px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1540483761890-a1f7be05d99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80');
+  background-image: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -313,43 +323,65 @@ function viewScenicDetails(id: string) {
   transform: translateY(-5px);
 }
 
-.spot-image-container {
+.spot-gradient {
+  height: 140px;
   position: relative;
-  height: 180px;
+  transition: transform 0.3s ease;
   overflow: hidden;
+  border-radius: 8px 8px 0 0;
 }
 
-.spot-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+.spot-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  color: white;
 }
 
-.spot-card:hover .spot-image {
-  transform: scale(1.1);
+.spot-icon {
+  color: white;
+  align-self: flex-end;
+}
+
+.spot-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.spot-title-overlay {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
 }
 
 .spot-rating {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  padding: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+}
+
+.spot-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .spot-info {
   padding: 15px;
-}
-
-.spot-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: var(--dark-color);
 }
 
 .spot-location {
@@ -406,5 +438,31 @@ function viewScenicDetails(id: string) {
 .feature-desc {
   color: #666;
   line-height: 1.5;
+}
+
+/* 渐变色样式 */
+.gradient-0 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
+.gradient-1 {
+  background: linear-gradient(135deg, #2af598 0%, #009efd 100%);
+  box-shadow: 0 4px 15px rgba(0, 158, 253, 0.5);
+}
+
+.gradient-2 {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  box-shadow: 0 4px 15px rgba(255, 154, 158, 0.5);
+}
+
+.gradient-3 {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  box-shadow: 0 4px 15px rgba(246, 211, 101, 0.5);
+}
+
+.gradient-4 {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  box-shadow: 0 4px 15px rgba(161, 140, 209, 0.5);
 }
 </style> 

@@ -55,8 +55,8 @@ const tagAnalysis = computed(() => {
   const tagCounts: Record<string, number> = {}
   
   // 统计每个标签在景点中出现的次数
-  scenicStore.scenicSpots.forEach(spot => {
-    spot.tags.forEach(tagId => {
+  scenicStore.scenicSpots.forEach((spot: any) => {
+    spot.tags.forEach((tagId: string) => {
       if (!tagCounts[tagId]) {
         tagCounts[tagId] = 0
       }
@@ -90,7 +90,7 @@ const locationAnalysis = computed(() => {
   const locations: Record<string, number> = {}
   
   // 统计各地区的景点数量
-  scenicStore.scenicSpots.forEach(spot => {
+  scenicStore.scenicSpots.forEach((spot: any) => {
     const province = spot.location.province
     
     if (!locations[province]) {
@@ -120,7 +120,7 @@ const priceAnalysis = computed(() => {
   ]
   
   // 统计各价格区间的景点数量
-  scenicStore.scenicSpots.forEach(spot => {
+  scenicStore.scenicSpots.forEach((spot: any) => {
     const price = spot.price.adult
     
     const range = ranges.find(r => price >= r.min && price <= r.max)
@@ -149,7 +149,7 @@ const ratingAnalysis = computed(() => {
   ]
   
   // 统计各评分区间的景点数量
-  scenicStore.scenicSpots.forEach(spot => {
+  scenicStore.scenicSpots.forEach((spot: any) => {
     const rating = spot.rating
     
     if (rating === 5) {
@@ -188,9 +188,9 @@ const seasonalAnalysis = computed(() => {
   ]
   
   // 统计各季节适合游览的景点数量
-  scenicStore.scenicSpots.forEach(spot => {
+  scenicStore.scenicSpots.forEach((spot: any) => {
     if (spot.bestVisitSeason && spot.bestVisitSeason.length) {
-      spot.bestVisitSeason.forEach(season => {
+      spot.bestVisitSeason.forEach((season: string) => {
         if (season === '春' || season === '春季') {
           seasons[0].count++;
         } else if (season === '夏' || season === '夏季') {
@@ -213,26 +213,32 @@ onMounted(async () => {
   
   // 确保数据已加载
   if (scenicStore.scenicSpots.length === 0) {
-    await scenicStore.loadScenicSpots()
+    await scenicStore.fetchAllScenicSpots()
   }
   
   if (scenicStore.tags.length === 0) {
-    await scenicStore.loadTags()
+    await scenicStore.fetchAllTags()
   }
   
   isLoading.value = false
   
   // 等待DOM更新后初始化图表
-  nextTick(() => {
-    initTagDistributionChart()
-    initLocationDistributionChart()
-    initPriceRangeChart()
-    initRatingDistributionChart()
-    initSeasonalPopularityChart()
-    
-    // 监听窗口大小变化，重新调整图表大小
-    window.addEventListener('resize', handleResize)
-  })
+  setTimeout(() => {
+    nextTick(() => {
+      try {
+        initTagDistributionChart()
+        initLocationDistributionChart()
+        initPriceRangeChart()
+        initRatingDistributionChart()
+        initSeasonalPopularityChart()
+        
+        // 监听窗口大小变化，重新调整图表大小
+        window.addEventListener('resize', handleResize)
+      } catch (error) {
+        console.error('初始化图表失败:', error)
+      }
+    })
+  }, 500) // 添加延时确保DOM已完全渲染
 })
 
 // 处理窗口大小变化
@@ -247,204 +253,232 @@ function handleResize() {
 // 初始化标签分布图表
 function initTagDistributionChart() {
   const chartDom = document.getElementById('tag-distribution-chart')
-  if (!chartDom) return
-  
-  tagDistributionChart.value = echarts.init(chartDom)
-  
-  const option = {
-    title: {
-      text: '热门标签分布',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'item',
-      formatter: '{b}: {c} 个景点'
-    },
-    series: [
-      {
-        type: 'bar',
-        data: tagAnalysis.value,
-        label: {
-          show: false
-        },
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ],
-    xAxis: {
-      type: 'category',
-      data: tagAnalysis.value.map(item => item.name),
-      axisLabel: {
-        interval: 0,
-        rotate: 45
-      }
-    },
-    yAxis: {
-      type: 'value'
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '15%',
-      top: '15%',
-      containLabel: true
-    }
+  if (!chartDom) {
+    console.error('找不到标签分布图表DOM元素')
+    return
   }
   
-  tagDistributionChart.value.setOption(option)
+  try {
+    tagDistributionChart.value = echarts.init(chartDom)
+    
+    const option = {
+      title: {
+        text: '热门标签分布',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} 个景点'
+      },
+      series: [
+        {
+          type: 'bar',
+          data: tagAnalysis.value,
+          label: {
+            show: false
+          },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ],
+      xAxis: {
+        type: 'category',
+        data: tagAnalysis.value.map(item => item.name),
+        axisLabel: {
+          interval: 0,
+          rotate: 45
+        }
+      },
+      yAxis: {
+        type: 'value'
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        top: '15%',
+        containLabel: true
+      }
+    }
+    
+    tagDistributionChart.value.setOption(option)
+  } catch (error) {
+    console.error('初始化标签分布图表失败:', error)
+  }
 }
 
 // 初始化地域分布图表
 function initLocationDistributionChart() {
   const chartDom = document.getElementById('location-distribution-chart')
-  if (!chartDom) return
-  
-  locationDistributionChart.value = echarts.init(chartDom)
-  
-  const option = {
-    title: {
-      text: '景点地域分布',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'item',
-      formatter: '{b}: {c} 个景点 ({d}%)'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'left',
-      type: 'scroll'
-    },
-    series: [
-      {
-        type: 'pie',
-        radius: '50%',
-        data: locationAnalysis.value,
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        },
-        label: {
-          formatter: '{b}: {c} ({d}%)'
-        }
-      }
-    ]
+  if (!chartDom) {
+    console.error('找不到地域分布图表DOM元素')
+    return
   }
   
-  locationDistributionChart.value.setOption(option)
+  try {
+    locationDistributionChart.value = echarts.init(chartDom)
+    
+    const option = {
+      title: {
+        text: '景点地域分布',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} 个景点 ({d}%)'
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left',
+        type: 'scroll'
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: '50%',
+          data: locationAnalysis.value,
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          },
+          label: {
+            formatter: '{b}: {c} ({d}%)'
+          }
+        }
+      ]
+    }
+    
+    locationDistributionChart.value.setOption(option)
+  } catch (error) {
+    console.error('初始化地域分布图表失败:', error)
+  }
 }
 
 // 初始化价格区间图表
 function initPriceRangeChart() {
   const chartDom = document.getElementById('price-range-chart')
-  if (!chartDom) return
-  
-  priceRangeChart.value = echarts.init(chartDom)
-  
-  const option = {
-    title: {
-      text: '景点价格区间分布',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'item',
-      formatter: '{b}: {c} 个景点 ({d}%)'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'left'
-    },
-    series: [
-      {
-        type: 'pie',
-        radius: ['40%', '70%'],  // 环形图
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 2
-        },
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: '18',
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: priceAnalysis.value
-      }
-    ]
+  if (!chartDom) {
+    console.error('找不到价格区间图表DOM元素')
+    return
   }
   
-  priceRangeChart.value.setOption(option)
+  try {
+    priceRangeChart.value = echarts.init(chartDom)
+    
+    const option = {
+      title: {
+        text: '景点价格区间分布',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} 个景点 ({d}%)'
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left'
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['40%', '70%'],  // 环形图
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+          },
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '18',
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: priceAnalysis.value
+        }
+      ]
+    }
+    
+    priceRangeChart.value.setOption(option)
+  } catch (error) {
+    console.error('初始化价格区间图表失败:', error)
+  }
 }
 
 // 初始化评分分布图表
 function initRatingDistributionChart() {
   const chartDom = document.getElementById('rating-distribution-chart')
-  if (!chartDom) return
-  
-  ratingDistributionChart.value = echarts.init(chartDom)
-  
-  const option = {
-    title: {
-      text: '景点评分分布',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      },
-      formatter: '{b}: {c} 个景点'
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'category',
-      data: ratingAnalysis.value.map(item => item.name)
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        type: 'bar',
-        data: ratingAnalysis.value.map(item => ({
-          value: item.value,
-          itemStyle: {
-            color: getColorByRating(item.name)
-          }
-        })),
-        label: {
-          show: true,
-          position: 'top',
-          formatter: '{c}'
-        }
-      }
-    ]
+  if (!chartDom) {
+    console.error('找不到评分分布图表DOM元素')
+    return
   }
   
-  ratingDistributionChart.value.setOption(option)
+  try {
+    ratingDistributionChart.value = echarts.init(chartDom)
+    
+    const option = {
+      title: {
+        text: '景点评分分布',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        },
+        formatter: '{b}: {c} 个景点'
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        data: ratingAnalysis.value.map(item => item.name)
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          type: 'bar',
+          data: ratingAnalysis.value.map(item => ({
+            value: item.value,
+            itemStyle: {
+              color: getColorByRating(item.name)
+            }
+          })),
+          label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+          }
+        }
+      ]
+    }
+    
+    ratingDistributionChart.value.setOption(option)
+  } catch (error) {
+    console.error('初始化评分分布图表失败:', error)
+  }
 }
 
 // 根据评分获取颜色
@@ -463,54 +497,61 @@ function getColorByRating(rating: string) {
 // 初始化季节热度图表
 function initSeasonalPopularityChart() {
   const chartDom = document.getElementById('seasonal-popularity-chart')
-  if (!chartDom) return
-  
-  seasonalPopularityChart.value = echarts.init(chartDom)
-  
-  const option = {
-    title: {
-      text: '季节热度分布',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      },
-      formatter: '{b}: {c} 个景点'
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'category',
-      data: seasonalAnalysis.value.map(item => item.name)
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        type: 'bar',
-        data: seasonalAnalysis.value.map(item => ({
-          value: item.count,
-          itemStyle: {
-            color: getColorBySeason(item.name)
-          }
-        })),
-        label: {
-          show: true,
-          position: 'top',
-          formatter: '{c}'
-        }
-      }
-    ]
+  if (!chartDom) {
+    console.error('找不到季节热度图表DOM元素')
+    return
   }
   
-  seasonalPopularityChart.value.setOption(option)
+  try {
+    seasonalPopularityChart.value = echarts.init(chartDom)
+    
+    const option = {
+      title: {
+        text: '季节热度分布',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        },
+        formatter: '{b}: {c} 个景点'
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        data: seasonalAnalysis.value.map(item => item.name)
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          type: 'bar',
+          data: seasonalAnalysis.value.map(item => ({
+            value: item.count,
+            itemStyle: {
+              color: getColorBySeason(item.name)
+            }
+          })),
+          label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+          }
+        }
+      ]
+    }
+    
+    seasonalPopularityChart.value.setOption(option)
+  } catch (error) {
+    console.error('初始化季节热度图表失败:', error)
+  }
 }
 
 // 根据季节获取颜色
@@ -593,7 +634,7 @@ function getColorBySeason(season: string) {
                     <h3 class="stat-title">平均评分</h3>
                     <p class="stat-value">
                       {{ 
-                        (scenicStore.scenicSpots.reduce((sum, spot) => sum + spot.rating, 0) / 
+                        (scenicStore.scenicSpots.reduce((sum: number, spot: any) => sum + spot.rating, 0) / 
                         scenicStore.scenicSpots.length).toFixed(1) 
                       }}
                     </p>
@@ -716,6 +757,7 @@ function getColorBySeason(season: string) {
 
 .chart {
   width: 100%;
-  height: 100%;
+  height: 350px;
+  min-height: 350px;
 }
 </style> 

@@ -101,7 +101,7 @@ export const useScenicStore = defineStore('scenic', () => {
               "lng": 94.8053
             }
           },
-          "images": getDefaultImagesForSpot("敦煌莫高窟", ["type-historical", "type-cultural", "geo-desert"]),
+          "images": [], // 移除图片URL，使用渐变色背景
           "tags": ["type-historical", "type-cultural", "geo-desert"],
           "price": {
             "adult": 258,
@@ -802,12 +802,19 @@ export const useScenicStore = defineStore('scenic', () => {
           "createdAt": "2023-01-23T00:00:00Z",
           "updatedAt": "2023-01-23T00:00:00Z"
         }
-      ] as ScenicSpot[]
+      ]
       
-      console.log('景点数据加载成功，数量:', scenicSpots.value.length)
+      // 确保每个景点都有空的图片数组，使用渐变色背景
+      scenicSpots.value.forEach(spot => {
+        spot.images = [];
+      });
+      
+      console.log('景点数据加载完成，共', scenicSpots.value.length, '个景点')
+      return scenicSpots.value
     } catch (err) {
-      console.error('加载景点数据失败:', err)
-      error.value = '加载景点数据失败'
+      console.error('加载景点数据失败', err)
+      error.value = '加载景点数据失败，请稍后重试'
+      return []
     } finally {
       isLoading.value = false
     }
@@ -1147,6 +1154,16 @@ export const useScenicStore = defineStore('scenic', () => {
     })
   }
   
+  // 兼容性方法 - 用于支持现有组件调用
+  async function fetchAllScenicSpots() {
+    return await loadScenicSpots()
+  }
+  
+  // 兼容性方法 - 用于支持现有组件调用
+  async function fetchAllTags() {
+    return await loadTags()
+  }
+  
   return {
     scenicSpots,
     tags,
@@ -1156,6 +1173,8 @@ export const useScenicStore = defineStore('scenic', () => {
     tagsByCategory,
     loadScenicSpots,
     loadTags,
+    fetchAllScenicSpots,
+    fetchAllTags,
     getScenicSpotById,
     filterScenicSpotsByTags,
     getScenicSpotTags,
